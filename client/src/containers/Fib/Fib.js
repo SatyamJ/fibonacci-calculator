@@ -9,7 +9,7 @@ class Fib extends Component {
             "3": 5,
             "7": 21
         },
-        index: null
+        index: ''
     };
 
     componentDidMount() {
@@ -18,8 +18,9 @@ class Fib extends Component {
     }
 
     fetchIndices = () => {
-        axios.get('/indices')
+        axios.get('/api/indices')
             .then(res => {
+                // console.log(res);
                 this.setState({
                     indices: res.data
                 })
@@ -30,7 +31,7 @@ class Fib extends Component {
     };
 
     fetchValues = () => {
-        axios.get('/values')
+        axios.get('/api/values')
             .then(res => {
                 this.setState({
                     values: res.data
@@ -48,7 +49,7 @@ class Fib extends Component {
     };
 
     submitHandler = () => {
-      axios.post('/indices/' + this.state.index)
+      axios.post('/api/indices/' + this.state.index)
           .then(res => console.log(res))
           .catch(err => console.log(err))
     };
@@ -63,7 +64,7 @@ class Fib extends Component {
 
         let indices = null;
         if (this.state.indices) {
-            indices = this.state.indices.join(', ');
+            indices = this.state.indices.map(index => index['number']).join(', ');
         }
         return (
             <div>

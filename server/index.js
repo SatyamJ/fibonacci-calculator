@@ -9,7 +9,7 @@ const keys = require('./keys');
 // create express app
 const app = express();
 app.use(cors());
-app.use(bodyParser.json);
+app.use(bodyParser.json());
 
 // pg setup
 const pgClient = new Pool({
@@ -24,10 +24,12 @@ pgClient.on('error', () => {
     console.log('Lost postgres connection');
 });
 
+
 pgClient
     .query('CREATE TABLE IF NOT EXISTS indices (number INT)')
     .then(res => console.log(res))
     .catch(error => console.log('Error occurred while creating table indices', error));
+
 
 // redis setup
 const redisClient = redis.createClient({
