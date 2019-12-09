@@ -1,0 +1,22 @@
+services:
+  - docker
+
+before_install:
+  - docker build -t satyamj/fibonacci-calculator-client-test -f ./Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true satyamj/fibonacci-calculator-client-test npm run test
+
+after_success:
+  - docker build -t satyamj/fibonacci-calculator-client ./client
+  - docker build -t satyamj/fibonacci-calculator-nginx ./nginx
+  - docker build -t satyamj/fibonacci-calculator-api ./server
+  - docker build -t satyamj/fibonacci-calculator-worker ./worker
+
+  # login to docker cli
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
+  # push images to docker hub
+  - docker push satyamj/fibonacci-calculator-client
+  - docker push satyamj/fibonacci-calculator-nginx
+  - docker push satyamj/fibonacci-calculator-api
+  - docker push satyamj/fibonacci-calculator-worker
