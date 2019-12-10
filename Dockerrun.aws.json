@@ -3,28 +3,28 @@
   "containerDefinitions": [
     {
       "name": "client",
-      "image": "fibonacci-calculator-client",
+      "image": "satyamj/fibonacci-calculator-client",
       "hostname": "client",
       "essential": false,
       "memory": 128
     },
     {
       "name": "server",
-      "image": "fibonacci-calculator-api",
+      "image": "satyamj/fibonacci-calculator-api",
       "hostname": "api",
       "essential": false,
       "memory": 128
     },
     {
       "name": "worker",
-      "image": "fibonacci-calculator-worker",
+      "image": "satyamj/fibonacci-calculator-worker",
       "hostname": "worker",
       "essential": false,
       "memory": 128
     },
     {
       "name": "nginx",
-      "image": "fibonacci-calculator-nginx",
+      "image": "satyamj/fibonacci-calculator-nginx",
       "hostname": "nginx",
       "essential": true,
       "portMappings": [
