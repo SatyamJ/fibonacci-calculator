@@ -3,7 +3,17 @@ import axios from 'axios'
 
 class Fib extends Component {
     state = {
-        indices: [1, 2, 3],
+        indices: [
+            {
+                number: 5
+            },
+            {
+                number: 6
+            },
+            {
+                number: 2
+            }
+        ],
         values: {
             "1": 1,
             "3": 5,
@@ -49,9 +59,9 @@ class Fib extends Component {
     };
 
     submitHandler = () => {
-      axios.post('/api/indices/' + this.state.index)
-          .then(res => console.log(res))
-          .catch(err => console.log(err))
+        axios.post('/api/indices/' + this.state.index)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     };
 
     render() {
