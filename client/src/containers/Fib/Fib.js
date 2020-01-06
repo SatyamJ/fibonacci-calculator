@@ -30,10 +30,11 @@ class Fib extends Component {
     fetchIndices = () => {
         axios.get('/api/indices')
             .then(res => {
-                // console.log(res);
-                this.setState({
-                    indices: res.data
-                })
+                if (res.length > 0 && res[0].number) {
+                    this.setState({
+                                      indices: res.data
+                                  })
+                }
             })
             .catch(error => {
                 console.log(error)
@@ -44,8 +45,8 @@ class Fib extends Component {
         axios.get('/api/values')
             .then(res => {
                 this.setState({
-                    values: res.data
-                })
+                                  values: res.data
+                              })
             })
             .catch(error => {
                 console.log(error)
@@ -54,8 +55,8 @@ class Fib extends Component {
 
     indexChangeHandler = (event) => {
         this.setState({
-            index: event.target.value
-        })
+                          index: event.target.value
+                      })
     };
 
     submitHandler = () => {
@@ -73,11 +74,14 @@ class Fib extends Component {
         }
 
         let indices = null;
-        if (this.state.indices) {
+        if (this.state.indices.length > 0) {
+            console.log(this.state.indices.length);
+            console.log(this.state.indices);
             indices = this.state.indices.map(index => index['number']).join(', ');
         }
         return (
             <div>
+                <h2>Fibonacci version 2</h2>
                 <form>
                     <input placeholder="Enter the index"
                            value={this.state.index}

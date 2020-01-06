@@ -10,6 +10,7 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 <header>
+                    <h2>version 2</h2>
                     <ul>
                         <li>
                             <Link to="/">Home</Link>

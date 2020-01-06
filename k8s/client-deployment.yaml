@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: satyamj/fibonacci-calculator-client
+          image: satyamj/fibonacci-calculator-client:v4
           ports:
             - containerPort: 3000
