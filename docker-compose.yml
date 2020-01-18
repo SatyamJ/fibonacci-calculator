@@ -44,7 +44,7 @@ services:
       - redis
     build:
       dockerfile: Dockerfile.dev
-      context: ./server
+      context: ./worker
     volumes:
       - /app/node_modules
       - ./worker:/app
