@@ -17,19 +17,23 @@ spec:
           image: satyamj/fibonacci-calculator-api
           ports:
             - containerPort: 5000
-#          env:
-#            - name: 'REDIS_HOST'
-#              value: 'redis'
-#            - name: 'REDIS_PORT'
-#              value: 6379
-#            - name: 'PG_HOST'
-#              value: 'postgres'
-#            - name: 'PG_PORT'
-#              value: 5432
-#            - name: 'PG_USER'
-#              value: 'postgres'
-#            - name: 'PG_PASSWORD'
-#              value: 'postgres_password'
-#            - name: 'PG_DATABASE'
-#              value: 'postgres'
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: '6379'
+            - name: PG_HOST
+              value: postgres-cluster-ip-service
+            - name: PG_PORT
+              value: '5432'
+            - name: PG_USER
+              value: postgres
+            - name: PG_DATABASE
+              value: postgres
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: PGPASSWORD
+                  name: pgpassword
+
 
